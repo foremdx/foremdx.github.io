@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForEMDX 포엠디엑스 - Data Ecosystem</title>
+    <style>
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Rubik:wght@500;700&display=swap');
+
+        /* CSS Variables for Easy Theme Management */
+        :root {
+            --primary-color: #1B9C85;
+            --primary-dark-color: #178E79;
+            --secondary-color: #0F172A;
+            --text-color: #454F5E;
+            --light-text-color: #FFFFFF;
+            --bg-light-color: #EDF6EE;
+            --bg-dark-color: #06140C;
+            --font-family-heading: 'Rubik', 'Noto Sans KR', sans-serif;
+            --font-family-body: 'Noto Sans KR', sans-serif;
+        }
+
+        /* Basic Reset & Body Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family-body);
+            color: var(--text-color);
+            line-height: 1.7;
+            background-color: #fdfdfd;
+        }
+
+        /* Container for Centering Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .main-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 20px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-family-heading);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--light-text-color);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .main-nav a {
+            color: var(--light-text-color);
+            text-decoration: none;
+            font-family: var(--font-family-heading);
+            font-weight: 500;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(2, 3, 129, 0.6), rgba(40, 116, 252, 0.5)), url(https://placehold.co/1920x1080/020381/40c9ff?text=Background+Image) no-repeat center center/cover;
+            color: var(--light-text-color);
+            padding: 200px 0 100px;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-family: var(--font-family-heading);
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+        
+        /* Principles Section */
+        .principles {
+            padding: 80px 0;
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .principle-item img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .principle-item h3 {
+            font-family: var(--font-family-heading);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .principle-item ul {
+            list-style: none;
+            color: #bdc3c7;
+        }
+
+        /* About Us Section */
+        .about-us {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: var(--font-family-heading);
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            color: #7f8c8d;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .about-card {
+            background-color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .about-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .about-card-content {
+            padding: 30px;
+            text-align: left;
+        }
+
+        .about-card h3 {
+            font-family: var(--font-family-heading);
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 80px 0;
+            background-color: var(--bg-light-color);
+        }
+
+        .quote-section blockquote {
+            font-size: 1.4rem;
+            font-weight: 500;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            border: none;
+            color: var(--secondary-color);
+        }
+        
+        .quote-section footer {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--text-color);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background-color: var(--bg-dark-color);
+            color: var(--light-text-color);
+        }
+
+        .contact-section .container {
+            max-width: 700px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #1a2a3a;
+            color: var(--light-text-color);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-form button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: var(--primary-dark-color);
+        }
+        
+        /* Footer */
+        .main-footer {
+            padding: 40px 0;
+            background-color: #1c1c1c;
+            color: #aaa;
+            text-align: center;
+        }
+
+        .main-footer p {
+            margin: 5px 0;
+        }
+        .main-footer strong {
+            color: #fff;
+        }
+        
+        /* Mobile Menu (Hamburger) */
+        .mobile-menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .principles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-card {
+                max-width: 450px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-nav {
+                display: none; /* Hide nav on mobile */
+            }
+            .mobile-menu-toggle {
+                display: block; /* Show hamburger on mobile */
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">ForEMDX</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Service</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-toggle">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: white;">
+                    <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Data<br>Ecosystem</h1>
+                <p>We aim to improve the industrial data ecosystem by leveraging digital technology. In addressing issues, we recognize that a variety of approaches, not just technological solutions, may be necessary. We hope to collaborate with partners from diverse perspectives to explore and propose better directions</p>
+            </div>
+        </section>
+
+        <section class="principles">
+            <div class="container">
+                <div class="principles-grid">
+                    <div class="principle-item">
+                        <img src="https://placehold.co/80x80/EDF6EE/0F172A?text=ICON" alt="Collaboration Icon">
+                        <h3>Collaboration</h3>
+                        <ul>
+                            <li>Connect</li>
+                            <li>Share</li>
+                        </ul>
+                    </div>
+                    <div class="principle-item">
+                        <img src="https://placehold.co/80x80/EDF6EE/0F172A?text=ICON" alt="Authority Icon">
+                        <h3>Authority</h3>
+                        <ul>
+                            <li>Sovereignty</li>
+                            <li>Security</li>
+                        </ul>
+                    </div>
+                    <div class="principle-item">
+                        <img src="https://placehold.co/80x80/EDF6EE/0F172A?text=ICON" alt="Principle Icon">
+                        <h3>Principle</h3>
+                        <ul>
+                            <li>Standard</li>
+                            <li>Logic</li>
+                        </ul>
+                    </div>
+                    <div class="principle-item">
+                        <img src="https://placehold.co/80x80/EDF6EE/0F172A?text=ICON" alt="Flexibility Icon">
+                        <h3>Flexibility</h3>
+                        <ul>
+                            <li>Agility</li>
+                            <li>Changeable</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-us" id="about">
+            <div class="container">
+                <h2 class="section-title">About Us</h2>
+                <p class="section-subtitle">We are willing to use our capabilities<br>to solve problems worth solving</p>
+
+                <div class="about-grid">
+                    <div class="about-card" id="services">
+                        <img src="https://placehold.co/400x500/cccccc/333?text=Consulting" alt="Consulting Image">
+                        <div class="about-card-content">
+                            <h3>Consulting</h3>
+                            <p>Active consulting to solve problems<br>Helps verify consulting results</p>
+                        </div>
+                    </div>
+                    <div class="about-card">
+                        <img src="https://placehold.co/400x500/cccccc/333?text=SW+Development" alt="SW Development Image">
+                        <div class="about-card-content">
+                            <h3>SW Development</h3>
+                            <p>Development of IT systems and solutions needed for businesses</p>
+                        </div>
+                    </div>
+                    <div class="about-card">
+                        <img src="https://placehold.co/400x500/cccccc/333?text=Data+Analysis" alt="Data Analysis Image">
+                        <div class="about-card-content">
+                            <h3>Data Analysis</h3>
+                            <p>Preprocessing, analysis, and visualization of data in the form desired by the customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="quote-section">
+            <div class="container">
+                <blockquote>
+                    "Problems are opportunities in disguise. They challenge us and help us grow."
+                    <footer>John C. Maxwell</footer>
+                </blockquote>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <h2 class="section-title" style="color: var(--light-text-color);">Contact</h2>
+                <p class="section-subtitle" style="color: #bdc3c7;">문의사항을 남겨주시면 신속하게 답변드리겠습니다.</p>
+                <form class="contact-form" action="#" method="post">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" value="010-">
+                    
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                    
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p><strong>포엠디엑스 (ForEMDX)</strong></p>
+            <p>대표자 : 김형국</p>
+            <p>경기도 성남시 분당구 성남대로779번길 6, 1층</p>
+            <p>Copyright &copy; 2025 ForEMDX | All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
