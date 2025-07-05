@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko-KR">
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForEMDX 포엠디엑스 - Data Ecosystem</title>
+    <title>ForEMDX - Data Ecosystem for Manufacturing</title>
     <style>
         /* Google Fonts Import */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Rubik:wght@500;700&display=swap');
@@ -71,6 +71,12 @@
             text-decoration: none;
             letter-spacing: 2px;
         }
+        
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
 
         .main-nav ul {
             list-style: none;
@@ -90,10 +96,27 @@
         .main-nav a:hover {
             color: var(--primary-color);
         }
+        
+        /* Language Toggle Button */
+        #lang-toggle-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--light-text-color);
+            color: var(--light-text-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: var(--font-family-heading);
+            font-weight: 700;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #lang-toggle-btn:hover {
+            background-color: var(--light-text-color);
+            color: var(--secondary-color);
+        }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(2, 3, 129, 0.6), rgba(40, 116, 252, 0.5)), url(image/providing_digital_experiences_through_the_implementation_of_a_manufacturing_ecosystem_with_dark_blu_gytwdu23dr032tfjywmr_1.png) no-repeat center center/cover;
+            background: linear-gradient(rgba(2, 3, 129, 0.6), rgba(40, 116, 252, 0.5)), url(https://placehold.co/1920x1080/020381/40c9ff?text=Background) no-repeat center center/cover;
             color: var(--light-text-color);
             padding: 200px 0 100px;
             text-align: left;
@@ -130,6 +153,7 @@
             width: 60px;
             height: 60px;
             margin-bottom: 20px;
+            filter: invert(100%);
         }
 
         .principle-item h3 {
@@ -264,10 +288,21 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .contact-form button:hover {
+        .contact-form button:hover:not(:disabled) {
             background-color: var(--primary-dark-color);
         }
+        .contact-form button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
         
+        #form-status {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 500;
+            height: 20px;
+        }
+
         /* Footer */
         .main-footer {
             padding: 40px 0;
@@ -283,13 +318,50 @@
             color: #fff;
         }
         
-        /* Mobile Menu (Hamburger) */
+        /* Mobile Menu */
         .mobile-menu-toggle {
-            display: none; /* Hidden on desktop */
+            display: none;
             background: none;
             border: none;
             cursor: pointer;
+            z-index: 101;
         }
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.98);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .main-header.nav-active .mobile-nav {
+            display: flex;
+        }
+        .mobile-nav ul {
+            list-style: none;
+            text-align: center;
+        }
+        .mobile-nav ul li {
+            margin: 20px 0;
+        }
+        .mobile-nav ul a {
+            color: var(--light-text-color);
+            text-decoration: none;
+            font-size: 2rem;
+            font-family: var(--font-family-heading);
+        }
+        .mobile-menu-toggle.active svg:first-child {
+            display: none;
+        }
+        .mobile-menu-toggle:not(.active) svg:last-child {
+            display: none;
+        }
+
 
         /* Responsive Styles */
         @media (max-width: 992px) {
@@ -306,11 +378,18 @@
         }
         
         @media (max-width: 768px) {
+            .nav-wrapper {
+                gap: 15px;
+            }
             .main-nav {
-                display: none; /* Hide nav on mobile */
+                display: none;
             }
             .mobile-menu-toggle {
-                display: block; /* Show hamburger on mobile */
+                display: block;
+            }
+            #lang-toggle-btn {
+                 font-size: 14px;
+                 padding: 6px 12px;
             }
             .hero h1 {
                 font-size: 3rem;
@@ -319,35 +398,48 @@
                 grid-template-columns: 1fr;
             }
         }
-
     </style>
 </head>
 <body>
 
-    <header class="main-header">
+    <header class="main-header" id="mainHeader">
         <div class="container">
             <a href="#" class="logo">ForEMDX</a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Service</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <button class="mobile-menu-toggle">
+            <div class="nav-wrapper">
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#home" data-key="navHome">Home</a></li>
+                        <li><a href="#about" data-key="navAbout">About</a></li>
+                        <li><a href="#services" data-key="navService">Service</a></li>
+                        <li><a href="#contact" data-key="navContact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button id="lang-toggle-btn">KO</button>
+            </div>
+             <button class="mobile-menu-toggle" id="mobileMenuToggle">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: white;">
                     <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: white; display: none;">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </button>
         </div>
+         <nav class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="#home" data-key="navHomeMobile">Home</a></li>
+                <li><a href="#about" data-key="navAboutMobile">About</a></li>
+                <li><a href="#services" data-key="navServiceMobile">Service</a></li>
+                <li><a href="#contact" data-key="navContactMobile">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
         <section class="hero" id="home">
             <div class="container">
-                <h1>Data<br>Ecosystem</h1>
-                <p>We aim to improve the industrial data ecosystem by leveraging digital technology. In addressing issues, we recognize that a variety of approaches, not just technological solutions, may be necessary. We hope to collaborate with partners from diverse perspectives to explore and propose better directions</p>
+                <h1 data-key="heroTitle">Data<br>Ecosystem</h1>
+                <p data-key="heroSubtitle">We aim to improve the industrial data ecosystem by leveraging digital technology. In addressing issues, we recognize that a variety of approaches, not just technological solutions, may be necessary. We hope to collaborate with partners from diverse perspectives to explore and propose better directions.</p>
             </div>
         </section>
 
@@ -355,35 +447,35 @@
             <div class="container">
                 <div class="principles-grid">
                     <div class="principle-item">
-                        <img src="icon/free-icon-cooperation-1006580_반전.png" alt="Collaboration Icon">
-                        <h3>Collaboration</h3>
+                        <img src="https://placehold.co/80x80/ffffff/ffffff?text=" alt="Collaboration Icon">
+                        <h3 data-key="principle1Title">Collaboration</h3>
                         <ul>
-                            <li>Connect</li>
-                            <li>Share</li>
+                            <li data-key="principle1Item1">Connect</li>
+                            <li data-key="principle1Item2">Share</li>
                         </ul>
                     </div>
                     <div class="principle-item">
-                        <img src="icon/free-icon-authorization-1995652_반전.png" alt="Authority Icon">
-                        <h3>Authority</h3>
+                        <img src="https://placehold.co/80x80/ffffff/ffffff?text=" alt="Authority Icon">
+                        <h3 data-key="principle2Title">Authority</h3>
                         <ul>
-                            <li>Sovereignty</li>
-                            <li>Security</li>
+                            <li data-key="principle2Item1">Sovereignty</li>
+                            <li data-key="principle2Item2">Security</li>
                         </ul>
                     </div>
                     <div class="principle-item">
-                        <img src="icon/free-icon-standard-5988503_반전.png" alt="Principle Icon">
-                        <h3>Principle</h3>
+                        <img src="https://placehold.co/80x80/ffffff/ffffff?text=" alt="Principle Icon">
+                        <h3 data-key="principle3Title">Principle</h3>
                         <ul>
-                            <li>Standard</li>
-                            <li>Logic</li>
+                            <li data-key="principle3Item1">Standard</li>
+                            <li data-key="principle3Item2">Logic</li>
                         </ul>
                     </div>
                     <div class="principle-item">
-                        <img src="icon/free-icon-flexibility-5666880_반전.png" alt="Flexibility Icon">
-                        <h3>Flexibility</h3>
+                        <img src="https://placehold.co/80x80/ffffff/ffffff?text=" alt="Flexibility Icon">
+                        <h3 data-key="principle4Title">Flexibility</h3>
                         <ul>
-                            <li>Agility</li>
-                            <li>Changeable</li>
+                            <li data-key="principle4Item1">Agility</li>
+                            <li data-key="principle4Item2">Changeable</li>
                         </ul>
                     </div>
                 </div>
@@ -392,29 +484,28 @@
 
         <section class="about-us" id="about">
             <div class="container">
-                <h2 class="section-title">About Us</h2>
-                <p class="section-subtitle">We are willing to use our capabilities<br>to solve problems worth solving</p>
-
+                <h2 class="section-title" data-key="aboutTitle">About Us</h2>
+                <p class="section-subtitle" data-key="aboutSubtitle">We are willing to use our capabilities<br>to solve problems worth solving.</p>
                 <div class="about-grid">
                     <div class="about-card" id="services">
-                        <img src="image/크기변환business-colleagues-meeting.jpg" alt="Consulting Image">
+                        <img src="https://placehold.co/400x500/cccccc/333?text=Consulting" alt="Consulting Image">
                         <div class="about-card-content">
-                            <h3>Consulting</h3>
-                            <p>Active consulting to solve problems<br>Helps verify consulting results</p>
+                            <h3 data-key="service1Title">Consulting</h3>
+                            <p data-key="service1Desc">Active consulting to solve problems<br>Helps verify consulting results.</p>
                         </div>
                     </div>
                     <div class="about-card">
-                        <img src="image/Trim_크기변환programming-background-with-person-working-with-codes-computer.jpg" alt="SW Development Image">
+                        <img src="https://placehold.co/400x500/cccccc/333?text=SW+Dev" alt="SW Development Image">
                         <div class="about-card-content">
-                            <h3>SW Development</h3>
-                            <p>Development of IT systems and solutions needed for businesses</p>
+                            <h3 data-key="service2Title">SW Development</h3>
+                            <p data-key="service2Desc">Development of IT systems and solutions needed for businesses.</p>
                         </div>
                     </div>
                     <div class="about-card">
-                        <img src="image/크기변환modern-equipped-computer-lab-scaled.jpg" alt="Data Analysis Image">
+                        <img src="https://placehold.co/400x500/cccccc/333?text=Data+Analysis" alt="Data Analysis Image">
                         <div class="about-card-content">
-                            <h3>Data Analysis</h3>
-                            <p>Preprocessing, analysis, and visualization of data in the form desired by the customer</p>
+                            <h3 data-key="service3Title">Data Analysis</h3>
+                            <p data-key="service3Desc">Preprocessing, analysis, and visualization of data in the form desired by the customer.</p>
                         </div>
                     </div>
                 </div>
@@ -423,34 +514,35 @@
         
         <section class="quote-section">
             <div class="container">
-                <blockquote>
-                    "Problems are opportunities in disguise. They challenge us and help us grow."
-                    <footer>John C. Maxwell</footer>
-                </blockquote>
+                <blockquote data-key="quoteText">"Problems are opportunities in disguise. They challenge us and help us grow."</blockquote>
+                <footer>John C. Maxwell</footer>
             </div>
         </section>
 
         <section class="contact-section" id="contact">
             <div class="container">
-                <h2 class="section-title" style="color: var(--light-text-color);">Contact</h2>
-                <p class="section-subtitle" style="color: #bdc3c7;">문의사항을 남겨주시면 신속하게 답변드리겠습니다.</p>
-                <form class="contact-form" action="#" method="post">
-                    <label for="name">Name</label>
+                <h2 class="section-title" style="color: var(--light-text-color);" data-key="contactTitle">Contact</h2>
+                <p class="section-subtitle" style="color: #bdc3c7;" data-key="contactSubtitle">Leave us a message and we'll get back to you shortly.</p>
+                
+                <form class="contact-form" id="contactForm" method="post">
+                    <label for="name" data-key="formName">Name</label>
                     <input type="text" id="name" name="name" required>
                     
-                    <label for="email">Email</label>
+                    <label for="email" data-key="formEmail">Email</label>
                     <input type="email" id="email" name="email" required>
                     
-                    <label for="phone">Phone</label>
-                    <input type="tel" id="phone" name="phone" value="010-">
+                    <label for="phone" data-key="formPhone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
                     
-                    <label for="subject">Subject</label>
+                    <label for="subject" data-key="formSubject">Subject</label>
                     <input type="text" id="subject" name="subject" required>
                     
-                    <label for="message">Message</label>
+                    <label for="message" data-key="formMessage">Message</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                     
-                    <button type="submit">Send Message</button>
+                    <button type="submit" id="submit-btn" data-key="formButton">Send Message</button>
+
+                    <div id="form-status"></div>
                 </form>
             </div>
         </section>
@@ -458,12 +550,138 @@
 
     <footer class="main-footer">
         <div class="container">
-            <p><strong>포엠디엑스 (ForEMDX)</strong></p>
-            <p>대표자 : 김형국</p>
-            <p>경기도 성남시 분당구 성남대로779번길 6, 1층</p>
-            <p>Copyright &copy; 2025 ForEMDX | All Rights Reserved.</p>
+            <p><strong data-key="footerCompany">ForEMDX</strong></p>
+            <p data-key="footerCeo">CEO : Hyungkuk Kim</p>
+            <p data-key="footerAddr">1F, 6, Seongnam-daero 779beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do</p>
+            <p data-key="footerCopyright">Copyright &copy; 2025 ForEMDX | All Rights Reserved.</p>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. 언어 데이터 정의 ---
+            const translations = {
+                ko: {
+                    navHome: "홈", navAbout: "소개", navService: "서비스", navContact: "연락처",
+                    navHomeMobile: "홈", navAboutMobile: "소개", navServiceMobile: "서비스", navContactMobile: "연락처",
+                    heroTitle: "데이터<br>생태계",
+                    heroSubtitle: "우리는 디지털 기술을 활용하여 산업 데이터 생태계를 개선하는 것을 목표로 합니다. 문제를 해결함에 있어 기술적인 해결책뿐만 아니라 다양한 접근 방식이 필요할 수 있음을 인지하고 있습니다. 다양한 관점의 파트너들과 협력하여 더 나은 방향을 모색하고 제안하고자 합니다.",
+                    principle1Title: "협업", principle1Item1: "연결", principle1Item2: "공유",
+                    principle2Title: "권한", principle2Item1: "주권", principle2Item2: "보안",
+                    principle3Title: "원칙", principle3Item1: "표준", principle3Item2: "논리",
+                    principle4Title: "유연성", principle4Item1: "민첩성", principle4Item2: "가변성",
+                    aboutTitle: "우리에 대해",
+                    aboutSubtitle: "우리는 해결할 가치가 있는 문제를 해결하기 위해<br>우리의 역량을 기꺼이 사용합니다.",
+                    service1Title: "컨설팅", service1Desc: "문제 해결을 위한 적극적인 컨설팅<br>컨설팅 결과 검증 지원",
+                    service2Title: "SW 개발", service2Desc: "기업에 필요한 IT 시스템 및 솔루션 개발",
+                    service3Title: "데이터 분석", service3Desc: "고객이 원하는 형태의 데이터 전처리, 분석 및 시각화",
+                    quoteText: `"문제는 위장된 기회입니다. 문제는 우리에게 도전하고 성장을 돕습니다."`,
+                    contactTitle: "연락처", contactSubtitle: "문의사항을 남겨주시면 신속하게 답변드리겠습니다.",
+                    formName: "이름", formEmail: "이메일", formPhone: "연락처", formSubject: "제목", formMessage: "메시지", formButton: "메시지 보내기",
+                    footerCompany: "포엠디엑스 (ForEMDX)", footerCeo: "대표자 : 김형국", footerAddr: "경기도 성남시 분당구 성남대로779번길 6, 1층",
+                    footerCopyright: "Copyright &copy; 2025 ForEMDX | All Rights Reserved."
+                },
+                en: {
+                    navHome: "Home", navAbout: "About", navService: "Service", navContact: "Contact",
+                    navHomeMobile: "Home", navAboutMobile: "About", navServiceMobile: "Service", navContactMobile: "Contact",
+                    heroTitle: "Data<br>Ecosystem",
+                    heroSubtitle: "We aim to improve the industrial data ecosystem by leveraging digital technology. In addressing issues, we recognize that a variety of approaches, not just technological solutions, may be necessary. We hope to collaborate with partners from diverse perspectives to explore and propose better directions.",
+                    principle1Title: "Collaboration", principle1Item1: "Connect", principle1Item2: "Share",
+                    principle2Title: "Authority", principle2Item1: "Sovereignty", principle2Item2: "Security",
+                    principle3Title: "Principle", principle3Item1: "Standard", principle3Item2: "Logic",
+                    principle4Title: "Flexibility", principle4Item1: "Agility", principle4Item2: "Changeable",
+                    aboutTitle: "About Us",
+                    aboutSubtitle: "We are willing to use our capabilities<br>to solve problems worth solving.",
+                    service1Title: "Consulting", service1Desc: "Active consulting to solve problems<br>Helps verify consulting results.",
+                    service2Title: "SW Development", service2Desc: "Development of IT systems and solutions needed for businesses.",
+                    service3Title: "Data Analysis", service3Desc: "Preprocessing, analysis, and visualization of data in the form desired by the customer.",
+                    quoteText: `"Problems are opportunities in disguise. They challenge us and help us grow."`,
+                    contactTitle: "Contact", contactSubtitle: "Leave us a message and we'll get back to you shortly.",
+                    formName: "Name", formEmail: "Email", formPhone: "Phone", formSubject: "Subject", formMessage: "Message", formButton: "Send Message",
+                    footerCompany: "ForEMDX", footerCeo: "CEO : Hyungkuk Kim", footerAddr: "1F, 6, Seongnam-daero 779beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do",
+                    footerCopyright: "Copyright &copy; 2025 ForEMDX | All Rights Reserved."
+                }
+            };
+
+            const langToggleButton = document.getElementById('lang-toggle-btn');
+            const translatableElements = document.querySelectorAll('[data-key]');
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mainHeader = document.getElementById('mainHeader');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            // 초기 언어를 영문으로 설정
+            let currentLang = localStorage.getItem('lang') || 'en';
+
+            const switchLanguage = (lang) => {
+                translatableElements.forEach(element => {
+                    const key = element.getAttribute('data-key');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.innerHTML = translations[lang][key];
+                    }
+                });
+                currentLang = lang;
+                langToggleButton.textContent = lang === 'ko' ? 'EN' : 'KO';
+                localStorage.setItem('lang', lang); 
+                document.documentElement.lang = lang === 'ko' ? 'ko-KR' : 'en-US';
+            };
+            
+            langToggleButton.addEventListener('click', () => {
+                const newLang = currentLang === 'ko' ? 'en' : 'ko';
+                switchLanguage(newLang);
+            });
+            
+            mobileMenuToggle.addEventListener('click', () => {
+                mainHeader.classList.toggle('nav-active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainHeader.classList.remove('nav-active');
+                    mobileMenuToggle.classList.remove('active');
+                });
+            });
+            
+            switchLanguage(currentLang);
+
+            // --- Contact Form 제출 로직 ---
+            const contactForm = document.getElementById('contactForm');
+            const submitButton = document.getElementById('submit-btn');
+            const formStatus = document.getElementById('form-status');
+            
+            // 🔽🔽🔽 이 부분에 Apps Script 웹 앱 URL을 붙여넣으세요 🔽🔽🔽
+            const SCRIPT_URL = "https://script.google.com/a/macros/4emdx.com/s/AKfycbwNrNmtvzv0TkX4U5KZaE4ZYXrWuxPPdnkFjBm1utS1AqBPNLljVHWzFMAdwqvjGcz0gw/exec";
+
+            contactForm.addEventListener('submit', e => {
+                e.preventDefault();
+
+                let originalButtonText = submitButton.textContent;
+                submitButton.disabled = true;
+                submitButton.textContent = currentLang === 'ko' ? '전송 중...' : 'Submitting...';
+                formStatus.textContent = '';
+                
+                fetch(SCRIPT_URL, { method: 'POST', body: new FormData(contactForm)})
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.result === 'success') {
+                            formStatus.textContent = currentLang === 'ko' ? '문의가 성공적으로 전송되었습니다.' : 'Your message has been sent successfully!';
+                            formStatus.style.color = 'var(--primary-color)';
+                            contactForm.reset();
+                        } else {
+                            throw new Error(data.message || (currentLang === 'ko' ? '알 수 없는 오류' : 'An unknown error occurred.'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error!', error);
+                        formStatus.textContent = `${currentLang === 'ko' ? '오류: ' : 'Error: '}${error.message}`;
+                        formStatus.style.color = '#e74c3c';
+                    })
+                    .finally(() => {
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalButtonText;
+                    });
+            });
+        });
+    </script>
 </body>
 </html>
