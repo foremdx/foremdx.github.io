@@ -7,19 +7,16 @@
     <title>ForEMDX(포엠디엑스) | 산업AI·AX 디지털 전환 솔루션 및 컨설팅 (김형국 대표)</title>
 
     <meta name="description" content="김형국 대표의 ForEMDX(포엠디엑스)는 산업AI와 AX(AI Transformation) 기술을 바탕으로 제조 데이터 생태계를 혁신합니다. 최고의 전문가들이 제공하는 디지털 전환 컨설팅, SW 개발, 데이터 분석 서비스를 만나보세요.">
-
-    <meta name="keywords" content="ForEMDX, 포엠디엑스, 4emdx, 산업AI, AX, AI Transformation, 디지털 전환, 김형국, 제조 AI, 스마트팩토리, 컨설팅">
-
+    <meta name="keywords" content="ForEMDX, 포엠디엑스, 4emdx, 산업AI, AX, AI Transformation, 디지털 전환, 김형국, 제조 AI, 스마트팩토리, 컨설팅, 기업매칭, 프로젝트 협업">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="ForEMDX | 제조 데이터 생태계 구축">
-    <meta property="og:description" content="데이터 기반 컨설팅, 맞춤형 SW 솔루션 개발, 데이터 분석 서비스를 제공합니다.">
-    <meta property="og:image" content="https://www.4emdx.com/image/og_image.png"> <meta property="og:url" content="https://www.4emdx.com">
-    
+    <meta property="og:title" content="ForEMDX | 제조 데이터 생태계 구축 및 기업 협업 플랫폼">
+    <meta property="og:description" content="산업AI 컨설팅, SW 개발, 데이터 분석 및 기업 매칭, 프로젝트 협업 서비스를 제공합니다.">
+    <meta property="og:image" content="https://www.4emdx.com/image/og_image.png">
+    <meta property="og:url" content="https://www.4emdx.com">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="ForEMDX | 제조 데이터 생태계 구축">
-    <meta name="twitter:description" content="데이터 기반 컨설팅, 맞춤형 SW 솔루션 개발, 데이터 분석 서비스를 제공합니다.">
+    <meta name="twitter:title" content="ForEMDX | 제조 데이터 생태계 구축 및 기업 협업 플랫폼">
+    <meta name="twitter:description" content="산업AI 컨설팅, SW 개발, 데이터 분석 및 기업 매칭, 프로젝트 협업 서비스를 제공합니다.">
     <meta name="twitter:image" content="https://www.4emdx.com/image/og_image.png"> 
-
     <meta name="naver-site-verification" content="ece501ffeff784658f9adf6489842621159d0b3c" /> 
     
     <style>
@@ -95,11 +92,16 @@
             align-items: center;
             gap: 30px;
         }
-
-        .main-nav ul {
+        
+        /* ▼▼▼ [수정] 선택자를 > 로 변경하여 직계 자식 ul에만 flex 적용 ▼▼▼ */
+        .main-nav > ul {
             list-style: none;
             display: flex;
             gap: 30px;
+        }
+        
+        .main-nav .menu-item {
+            position: relative;
         }
 
         .main-nav a {
@@ -109,327 +111,123 @@
             font-weight: 500;
             font-size: 18px;
             transition: color 0.3s ease;
+            padding: 20px 0;
         }
 
         .main-nav a:hover {
             color: var(--primary-color);
         }
         
-        /* Language Toggle Button */
-        #lang-toggle-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid var(--light-text-color);
-            color: var(--light-text-color);
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: var(--font-family-heading);
-            font-weight: 700;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        #lang-toggle-btn:hover {
-            background-color: var(--light-text-color);
-            color: var(--secondary-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(2, 3, 129, 0.6), rgba(40, 116, 252, 0.5)), url(image/providing_digital_experiences_through_the_implementation_of_a_manufacturing_ecosystem_with_dark_blu_gytwdu23dr032tfjywmr_1.png) no-repeat center center/cover;
-            color: var(--light-text-color);
-            padding: 200px 0 100px;
-            text-align: left;
-        }
-
-        .hero h1 {
-            font-family: var(--font-family-heading);
-            font-size: 4rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin-bottom: 40px;
-        }
-        
-        /* Principles Section */
-        .principles {
-            padding: 80px 0;
-            background-color: var(--secondary-color);
-            color: var(--light-text-color);
-        }
-
-        .principles-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            text-align: center;
-        }
-
-        .principle-item img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 20px;
-            /* filter: invert(100%); */
-        }
-
-        .principle-item h3 {
-            font-family: var(--font-family-heading);
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        .principle-item ul {
+        /* Dropdown Menu Styles */
+        .sub-menu {
+            display: none;
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(15, 23, 42, 0.9);
             list-style: none;
-            color: #bdc3c7;
+            padding: 10px 0;
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            min-width: 180px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        /* About Us Section */
-        .about-us {
-            padding: 100px 0;
+        .sub-menu li {
             text-align: center;
         }
 
-        .section-title {
-            font-family: var(--font-family-heading);
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 60px;
-            color: #7f8c8d;
+        .sub-menu a {
+            padding: 12px 20px;
+            display: block;
+            white-space: nowrap;
+            font-size: 16px;
         }
         
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .about-card {
-            background-color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .about-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .about-card img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-        }
-
-        .about-card-content {
-            padding: 30px;
-            text-align: left;
-        }
-
-        .about-card h3 {
-            font-family: var(--font-family-heading);
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
-
-        /* Quote Section */
-        .quote-section {
-            padding: 80px 0;
-            background-color: var(--bg-light-color);
-        }
-
-        .quote-section blockquote {
-            font-size: 1.4rem;
-            font-weight: 500;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            border: none;
-            color: var(--secondary-color);
-        }
-        
-        .quote-section footer {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            font-style: italic;
-            color: var(--text-color);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 100px 0;
-            background-color: var(--bg-dark-color);
-            color: var(--light-text-color);
-        }
-
-        .contact-section .container {
-            max-width: 700px;
-        }
-
-        .contact-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #444;
-            border-radius: 5px;
-            background-color: #1a2a3a;
-            color: var(--light-text-color);
-            font-size: 1rem;
-            margin-bottom: 20px;
-        }
-
-        .contact-form button {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
+        .sub-menu a:hover {
             background-color: var(--primary-color);
             color: var(--light-text-color);
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .contact-form button:hover:not(:disabled) {
-            background-color: var(--primary-dark-color);
-        }
-        .contact-form button:disabled {
-            background-color: #555;
-            cursor: not-allowed;
-        }
-        
-        #form-status {
-            margin-top: 20px;
-            text-align: center;
-            font-weight: 500;
-            height: 20px;
         }
 
-        /* Footer */
-        .main-footer {
-            padding: 40px 0;
-            background-color: #1c1c1c;
-            color: #aaa;
-            text-align: center;
+        .menu-item:hover .sub-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
         }
 
-        .main-footer p {
-            margin: 5px 0;
-        }
-        .main-footer strong {
-            color: #fff;
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 101;
-        }
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(15, 23, 42, 0.98);
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        }
-        .main-header.nav-active .mobile-nav {
-            display: flex;
-        }
-        .mobile-nav ul {
-            list-style: none;
-            text-align: center;
-        }
-        .mobile-nav ul li {
-            margin: 20px 0;
-        }
-        .mobile-nav ul a {
-            color: var(--light-text-color);
-            text-decoration: none;
-            font-size: 2rem;
-            font-family: var(--font-family-heading);
-        }
-        .mobile-menu-toggle.active svg:first-child {
-            display: none;
-        }
-        .mobile-menu-toggle:not(.active) svg:last-child {
-            display: none;
-        }
-
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .principles-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            .about-card {
-                max-width: 450px;
-                margin: 0 auto;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-wrapper {
-                gap: 15px;
-            }
-            .main-nav {
-                display: none;
-            }
-            .mobile-menu-toggle {
-                display: block;
-            }
-            #lang-toggle-btn {
-                 font-size: 14px;
-                 padding: 6px 12px;
-            }
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .principles-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        #lang-toggle-btn { background: rgba(255, 255, 255, 0.2); border: 1px solid var(--light-text-color); color: var(--light-text-color); padding: 8px 15px; border-radius: 20px; cursor: pointer; font-family: var(--font-family-heading); font-weight: 700; transition: background-color 0.3s, color 0.3s; }
+        #lang-toggle-btn:hover { background-color: var(--light-text-color); color: var(--secondary-color); }
+        .hero { background: linear-gradient(rgba(2, 3, 129, 0.6), rgba(40, 116, 252, 0.5)), url(image/providing_digital_experiences_through_the_implementation_of_a_manufacturing_ecosystem_with_dark_blu_gytwdu23dr032tfjywmr_1.png) no-repeat center center/cover; color: var(--light-text-color); padding: 200px 0 100px; text-align: left; }
+        .hero h1 { font-family: var(--font-family-heading); font-size: 4rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { font-size: 1.1rem; max-width: 500px; margin-bottom: 40px; }
+        .principles { padding: 80px 0; background-color: var(--secondary-color); color: var(--light-text-color); }
+        .principles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center; }
+        .principle-item img { width: 60px; height: 60px; margin-bottom: 20px; }
+        .principle-item h3 { font-family: var(--font-family-heading); font-size: 1.8rem; margin-bottom: 10px; }
+        .principle-item ul { list-style: none; color: #bdc3c7; }
+        .about-us { padding: 100px 0; text-align: center; }
+        .section-title { font-family: var(--font-family-heading); font-size: 3rem; margin-bottom: 15px; color: var(--secondary-color); }
+        .section-subtitle { font-size: 1.2rem; margin-bottom: 60px; color: #7f8c8d; }
+        .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .about-card { background-color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .about-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .about-card img { width: 100%; height: 350px; object-fit: cover; }
+        .about-card-content { padding: 30px; text-align: left; }
+        .about-card h3 { font-family: var(--font-family-heading); font-size: 1.5rem; color: var(--secondary-color); margin-bottom: 10px; }
+        .quote-section { padding: 80px 0; background-color: var(--bg-light-color); }
+        .quote-section blockquote { font-size: 1.4rem; font-weight: 500; text-align: center; max-width: 800px; margin: 0 auto; border: none; color: var(--secondary-color); }
+        .quote-section footer { display: block; text-align: center; margin-top: 20px; font-style: italic; color: var(--text-color); }
+        .contact-section { padding: 100px 0; background-color: var(--bg-dark-color); color: var(--light-text-color); }
+        .contact-section .container { max-width: 700px; }
+        .contact-form label { display: block; margin-bottom: 8px; font-weight: 500; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; border: 1px solid #444; border-radius: 5px; background-color: #1a2a3a; color: var(--light-text-color); font-size: 1rem; margin-bottom: 20px; }
+        .contact-form button { display: block; width: 100%; padding: 15px; border: none; border-radius: 5px; background-color: var(--primary-color); color: var(--light-text-color); font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: background-color 0.3s ease; }
+        .contact-form button:hover:not(:disabled) { background-color: var(--primary-dark-color); }
+        .contact-form button:disabled { background-color: #555; cursor: not-allowed; }
+        #form-status { margin-top: 20px; text-align: center; font-weight: 500; height: 20px; }
+        .main-footer { padding: 40px 0; background-color: #1c1c1c; color: #aaa; text-align: center; }
+        .main-footer p { margin: 5px 0; }
+        .main-footer strong { color: #fff; }
+        .mobile-menu-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 101; }
+        .mobile-nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.98); flex-direction: column; justify-content: center; align-items: center; z-index: 100; }
+        .main-header.nav-active .mobile-nav { display: flex; }
+        .mobile-nav ul { list-style: none; text-align: center; }
+        .mobile-nav > ul > li { margin: 25px 0; }
+        .mobile-nav ul a { color: var(--light-text-color); text-decoration: none; font-size: 2rem; font-family: var(--font-family-heading); }
+        .mobile-nav .mobile-submenu-title { color: #8892b0; font-size: 2rem; font-family: var(--font-family-heading); margin-bottom: 10px; }
+        .mobile-nav .mobile-submenu { list-style: none; padding: 0; margin: 0; }
+        .mobile-nav .mobile-submenu li { margin: 10px 0; }
+        .mobile-nav .mobile-submenu a { font-size: 1.5rem; color: #ccd6f6; }
+        .mobile-menu-toggle.active svg:first-child { display: none; }
+        .mobile-menu-toggle:not(.active) svg:last-child { display: none; }
+        @media (max-width: 992px) { .principles-grid { grid-template-columns: repeat(2, 1fr); } .about-grid { grid-template-columns: 1fr; } .about-card { max-width: 450px; margin: 0 auto; } }
+        @media (max-width: 768px) { .nav-wrapper { gap: 15px; } .main-nav { display: none; } .mobile-menu-toggle { display: block; } #lang-toggle-btn { font-size: 14px; padding: 6px 12px; } .hero h1 { font-size: 3rem; } .principles-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <header class="main-header" id="mainHeader">
         <div class="container">
-            <a href="#" class="logo">ForEMDX</a>
+            <a href="index.html" class="logo">ForEMDX</a>
             <div class="nav-wrapper">
                 <nav class="main-nav">
                     <ul>
-                        <li><a href="#home" data-key="navHome">Home</a></li>
-                        <li><a href="#about" data-key="navAbout">About</a></li>
-                        <li><a href="#services" data-key="navService">Service</a></li>
-                        <li><a href="#contact" data-key="navContact">Contact</a></li>
+                        <li class="menu-item"><a href="#home" data-key="navHome">Home</a></li>
+                        <li class="menu-item"><a href="#about" data-key="navAbout">About</a></li>
+                        <li class="menu-item">
+                            <a href="#services" data-key="navService">Service</a>
+                            <ul class="sub-menu">
+                                <li><a href="collaboration.html" data-key="navCollab">협업</a></li>
+                                <li><a href="project.html" data-key="navProject">프로젝트</a></li>
+                                <li><a href="diagnosis.html" data-key="navDiagnosis">기업수준진단</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item"><a href="#contact" data-key="navContact">Contact</a></li>
                     </ul>
                 </nav>
                 <button id="lang-toggle-btn">KO</button>
@@ -445,10 +243,17 @@
         </div>
          <nav class="mobile-nav" id="mobileNav">
             <ul>
-                <li><a href="#home" data-key="navHomeMobile">Home</a></li>
-                <li><a href="#about" data-key="navAboutMobile">About</a></li>
-                <li><a href="#services" data-key="navServiceMobile">Service</a></li>
-                <li><a href="#contact" data-key="navContactMobile">Contact</a></li>
+                <li><a href="#home" data-key="navHomeMobile" class="mobile-nav-link">Home</a></li>
+                <li><a href="#about" data-key="navAboutMobile" class="mobile-nav-link">About</a></li>
+                <li class="has-submenu-mobile">
+                    <span class="mobile-submenu-title" data-key="navServiceMobile">Service</span>
+                    <ul class="mobile-submenu">
+                        <li><a href="collaboration.html" data-key="navCollabMobile" class="mobile-nav-link">협업</a></li>
+                        <li><a href="project.html" data-key="navProjectMobile" class="mobile-nav-link">프로젝트</a></li>
+                        <li><a href="diagnosis.html" data-key="navDiagnosisMobile" class="mobile-nav-link">기업수준진단</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact" data-key="navContactMobile" class="mobile-nav-link">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -532,7 +337,8 @@
         
         <section class="quote-section">
             <div class="container">
-                <blockquote data-key="quoteText">Problems are opportunities in disguise. They challenge us and help us grow.</blockquote>                
+                <blockquote data-key="quoteText">"Problems are opportunities in disguise. They challenge us and help us grow."</blockquote>
+                <footer>John C. Maxwell</footer>
             </div>
         </section>
 
@@ -540,25 +346,18 @@
             <div class="container">
                 <h2 class="section-title" style="color: var(--light-text-color);" data-key="contactTitle">Contact</h2>
                 <p class="section-subtitle" style="color: #bdc3c7;" data-key="contactSubtitle">Leave us a message and we'll get back to you shortly.</p>
-                
                 <form class="contact-form" id="contactForm" method="post">
                     <label for="name" data-key="formName">Name</label>
                     <input type="text" id="name" name="name" required>
-                    
                     <label for="email" data-key="formEmail">Email</label>
                     <input type="email" id="email" name="email" required>
-                    
                     <label for="phone" data-key="formPhone">Phone</label>
                     <input type="tel" id="phone" name="phone">
-                    
                     <label for="subject" data-key="formSubject">Subject</label>
                     <input type="text" id="subject" name="subject" required>
-                    
                     <label for="message" data-key="formMessage">Message</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
-                    
                     <button type="submit" id="submit-btn" data-key="formButton">Send Message</button>
-
                     <div id="form-status"></div>
                 </form>
             </div>
@@ -576,11 +375,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- 1. 언어 데이터 정의 ---
             const translations = {
                 ko: {
                     navHome: "홈", navAbout: "소개", navService: "서비스", navContact: "연락처",
+                    navCollab: "협업", navProject: "프로젝트", navDiagnosis: "기업수준진단",
                     navHomeMobile: "홈", navAboutMobile: "소개", navServiceMobile: "서비스", navContactMobile: "연락처",
+                    navCollabMobile: "협업", navProjectMobile: "프로젝트", navDiagnosisMobile: "기업수준진단",
                     heroTitle: "데이터<br>생태계",
                     heroSubtitle: "우리는 디지털 기술을 활용하여 산업 데이터 생태계를 개선하는 것을 목표로 합니다. 문제를 해결함에 있어 기술적인 해결책뿐만 아니라 다양한 접근 방식이 필요할 수 있음을 인지하고 있습니다. 다양한 관점의 파트너들과 협력하여 더 나은 방향을 모색하고 제안하고자 합니다.",
                     principle1Title: "협업", principle1Item1: "연결", principle1Item2: "공유",
@@ -596,11 +396,16 @@
                     contactTitle: "연락처", contactSubtitle: "문의사항을 남겨주시면 신속하게 답변드리겠습니다.",
                     formName: "이름", formEmail: "이메일", formPhone: "연락처", formSubject: "제목", formMessage: "메시지", formButton: "메시지 보내기",
                     footerCompany: "포엠디엑스 (ForEMDX)", footerCeo: "대표자 : 김형국", footerAddr: "경기도 성남시 분당구 성남대로779번길 6, 1층",
-                    footerCopyright: "Copyright &copy; 2025 ForEMDX | All Rights Reserved."
+                    footerCopyright: "Copyright &copy; 2025 ForEMDX | All Rights Reserved.",
+                    formSuccess: "문의가 성공적으로 전송되었습니다. 검토 후 신속하게 연락드리겠습니다. 감사합니다!",
+                    formError: "오류가 발생했습니다: ",
+                    formSubmitting: "전송 중..."
                 },
                 en: {
                     navHome: "Home", navAbout: "About", navService: "Service", navContact: "Contact",
+                    navCollab: "Collaboration", navProject: "Project", navDiagnosis: "Diagnosis",
                     navHomeMobile: "Home", navAboutMobile: "About", navServiceMobile: "Service", navContactMobile: "Contact",
+                    navCollabMobile: "Collaboration", navProjectMobile: "Project", navDiagnosisMobile: "Diagnosis",
                     heroTitle: "Data<br>Ecosystem",
                     heroSubtitle: "We aim to improve the industrial data ecosystem by leveraging digital technology. In addressing issues, we recognize that a variety of approaches, not just technological solutions, may be necessary. We hope to collaborate with partners from diverse perspectives to explore and propose better directions.",
                     principle1Title: "Collaboration", principle1Item1: "Connect", principle1Item2: "Share",
@@ -616,7 +421,10 @@
                     contactTitle: "Contact", contactSubtitle: "Leave us a message and we'll get back to you shortly.",
                     formName: "Name", formEmail: "Email", formPhone: "Phone", formSubject: "Subject", formMessage: "Message", formButton: "Send Message",
                     footerCompany: "ForEMDX", footerCeo: "CEO : Hyungkuk Kim", footerAddr: "1F, 6, Seongnam-daero 779beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do",
-                    footerCopyright: "Copyright &copy; 2025 ForEMDX | All Rights Reserved."
+                    footerCopyright: "Copyright &copy; 2025 ForEMDX | All Rights Reserved.",
+                    formSuccess: "Your message has been sent successfully. We will review it and get back to you shortly. Thank you!",
+                    formError: "Error: ",
+                    formSubmitting: "Submitting..."
                 }
             };
 
@@ -625,8 +433,6 @@
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
             const mainHeader = document.getElementById('mainHeader');
             const mobileNav = document.getElementById('mobileNav');
-            
-            // 초기 언어를 영문으로 설정
             let currentLang = localStorage.getItem('lang') || 'en';
 
             const switchLanguage = (lang) => {
@@ -652,7 +458,7 @@
                 mobileMenuToggle.classList.toggle('active');
             });
 
-            mobileNav.querySelectorAll('a').forEach(link => {
+            mobileNav.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', () => {
                     mainHeader.classList.remove('nav-active');
                     mobileMenuToggle.classList.remove('active');
@@ -661,43 +467,41 @@
             
             switchLanguage(currentLang);
 
-            // --- Contact Form 제출 로직 ---
             const contactForm = document.getElementById('contactForm');
-            const submitButton = document.getElementById('submit-btn');
-            const formStatus = document.getElementById('form-status');
-            
-            // 🔽🔽🔽 이 부분에 Apps Script 웹 앱 URL을 붙여넣으세요 🔽🔽🔽
-            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwYxoW4gYkA017PHN77Tai4Uh0c4IP4RP4mAdN7SSFU-6dONuaeujXp9c2vKRIXFCyOA/exec";
+            if (contactForm) {
+                const submitButton = document.getElementById('submit-btn');
+                const formStatus = document.getElementById('form-status');
+                const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwYxoW4gYkA017PHN77Tai4Uh0c4IP4RP4mAdN7SSFU-6dONuaeujXp9c2vKRIXFCyOA/exec";
 
-            contactForm.addEventListener('submit', e => {
-                e.preventDefault();
-
-                let originalButtonText = submitButton.textContent;
-                submitButton.disabled = true;
-                submitButton.textContent = currentLang === 'ko' ? '전송 중...' : 'Submitting...';
-                formStatus.textContent = '';
-                
-                fetch(SCRIPT_URL, { method: 'POST', body: new FormData(contactForm)})
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.result === 'success') {
-                            formStatus.textContent = currentLang === 'ko' ? '문의가 성공적으로 전송되었습니다.' : 'Your message has been sent successfully!';
-                            formStatus.style.color = 'var(--primary-color)';
-                            contactForm.reset();
-                        } else {
-                            throw new Error(data.message || (currentLang === 'ko' ? '알 수 없는 오류' : 'An unknown error occurred.'));
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error!', error);
-                        formStatus.textContent = `${currentLang === 'ko' ? '오류: ' : 'Error: '}${error.message}`;
-                        formStatus.style.color = '#e74c3c';
-                    })
-                    .finally(() => {
-                        submitButton.disabled = false;
-                        submitButton.textContent = originalButtonText;
-                    });
-            });
+                contactForm.addEventListener('submit', e => {
+                    e.preventDefault();
+                    let originalButtonText = submitButton.textContent;
+                    submitButton.disabled = true;
+                    submitButton.textContent = translations[currentLang].formSubmitting;
+                    formStatus.textContent = '';
+                    
+                    fetch(SCRIPT_URL, { method: 'POST', body: new FormData(contactForm)})
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.result === 'success') {
+                                formStatus.textContent = translations[currentLang].formSuccess;
+                                formStatus.style.color = 'var(--primary-color)';
+                                contactForm.reset();
+                            } else {
+                                throw new Error(data.message || (currentLang === 'ko' ? '알 수 없는 오류' : 'An unknown error occurred.'));
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error!', error);
+                            formStatus.textContent = `${translations[currentLang].formError}${error.message}`;
+                            formStatus.style.color = '#e74c3c';
+                        })
+                        .finally(() => {
+                            submitButton.disabled = false;
+                            submitButton.textContent = originalButtonText;
+                        });
+                });
+            }
         });
     </script>
 </body>
