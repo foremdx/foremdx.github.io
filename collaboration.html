@@ -4,21 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>ForEMDX(포엠디엑스) | 산업AI·AX 디지털 전환 솔루션 및 컨설팅 (김형국 대표)</title>
+    <title>협업 - ForEMDX</title>
 
-    <meta name="description" content="김형국 대표의 ForEMDX(포엠디엑스)는 산업AI와 AX(AI Transformation) 기술을 바탕으로 제조 데이터 생태계를 혁신합니다. 최고의 전문가들이 제공하는 디지털 전환 컨설팅, SW 개발, 데이터 분석 서비스를 만나보세요.">
-    <meta name="keywords" content="ForEMDX, 포엠디엑스, 4emdx, 산업AI, AX, AI Transformation, 디지털 전환, 김형국, 제조 AI, 스마트팩토리, 컨설팅, 기업매칭, 프로젝트 협업">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="ForEMDX | 제조 데이터 생태계 구축 및 기업 협업 플랫폼">
+    <meta name="description" content="ForEMDX(포엠디엑스)의 기업 협업 플랫폼입니다. 산업AI 및 AX 전환 프로젝트를 등록하고 최고의 파트너를 만나보세요.">
+    <meta property="og:title" content="협업 플랫폼 | ForEMDX">
     <meta property="og:description" content="산업AI 컨설팅, SW 개발, 데이터 분석 및 기업 매칭, 프로젝트 협업 서비스를 제공합니다.">
-    <meta property="og:image" content="https://www.4emdx.com/image/og_image.png">
-    <meta property="og:url" content="https://www.4emdx.com">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="ForEMDX | 제조 데이터 생태계 구축 및 기업 협업 플랫폼">
-    <meta name="twitter:description" content="산업AI 컨설팅, SW 개발, 데이터 분석 및 기업 매칭, 프로젝트 협업 서비스를 제공합니다.">
-    <meta name="twitter:image" content="https://www.4emdx.com/image/og_image.png"> 
-    <meta name="naver-site-verification" content="ece501ffeff784658f9adf6489842621159d0b3c" /> 
-    
     <style>
         /* Google Fonts Import */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Rubik:wght@500;700&display=swap');
@@ -43,8 +33,9 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
+        html, body {
+            height: 100%;
+            overflow: hidden; /* 스크롤바 중복 방지 */
         }
 
         body {
@@ -52,9 +43,10 @@
             color: var(--text-color);
             line-height: 1.7;
             background-color: #fdfdfd;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Container for Centering Content */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -63,13 +55,14 @@
 
         /* Header Styles */
         .main-header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            /* ▼▼▼ [수정] position: absolute 제거 ▼▼▼ */
+            position: relative; 
             z-index: 100;
             padding: 20px 0;
             transition: background-color 0.3s ease;
+            /* ▼▼▼ [추가] 헤더에 배경색 부여 ▼▼▼ */
+            background-color: var(--secondary-color);
+            flex-shrink: 0; /* 헤더 높이가 줄어들지 않도록 설정 */
         }
 
         .main-header .container {
@@ -87,112 +80,37 @@
             letter-spacing: 2px;
         }
         
-        .nav-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-        
-        /* ▼▼▼ [수정] 선택자를 > 로 변경하여 직계 자식 ul에만 flex 적용 ▼▼▼ */
-        .main-nav > ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-        
-        .main-nav .menu-item {
-            position: relative;
-        }
-
-        .main-nav a {
-            color: var(--light-text-color);
-            text-decoration: none;
-            font-family: var(--font-family-heading);
-            font-weight: 500;
-            font-size: 18px;
-            transition: color 0.3s ease;
-            padding: 20px 0;
-        }
-
-        .main-nav a:hover {
-            color: var(--primary-color);
-        }
+        .nav-wrapper { display: flex; align-items: center; gap: 30px; }
+        .main-nav > ul { list-style: none; display: flex; gap: 30px; }
+        .main-nav .menu-item { position: relative; }
+        .main-nav a { color: var(--light-text-color); text-decoration: none; font-family: var(--font-family-heading); font-weight: 500; font-size: 18px; transition: color 0.3s ease; padding: 20px 0; }
+        .main-nav a:hover { color: var(--primary-color); }
         
         /* Dropdown Menu Styles */
-        .sub-menu {
-            display: none;
-            position: absolute;
-            top: 80%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(15, 23, 42, 0.9);
-            list-style: none;
-            padding: 10px 0;
-            margin-top: 10px;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            min-width: 180px;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .sub-menu li {
-            text-align: center;
-        }
-
-        .sub-menu a {
-            padding: 12px 20px;
-            display: block;
-            white-space: nowrap;
-            font-size: 16px;
-        }
+        .sub-menu { display: none; position: absolute; top: 80%; left: 50%; transform: translateX(-50%); background-color: rgba(15, 23, 42, 0.9); list-style: none; padding: 10px 0; margin-top: 10px; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); min-width: 180px; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+        .sub-menu li { text-align: center; }
+        .sub-menu a { padding: 12px 20px; display: block; white-space: nowrap; font-size: 16px; }
+        .sub-menu a:hover { background-color: var(--primary-color); color: var(--light-text-color); }
+        .menu-item:hover .sub-menu { display: block; opacity: 1; visibility: visible; }
         
-        .sub-menu a:hover {
-            background-color: var(--primary-color);
-            color: var(--light-text-color);
-        }
-
-        .menu-item:hover .sub-menu {
-            display: block;
-            opacity: 1;
-            visibility: visible;
-        }
-
         #lang-toggle-btn { background: rgba(255, 255, 255, 0.2); border: 1px solid var(--light-text-color); color: var(--light-text-color); padding: 8px 15px; border-radius: 20px; cursor: pointer; font-family: var(--font-family-heading); font-weight: 700; transition: background-color 0.3s, color 0.3s; }
         #lang-toggle-btn:hover { background-color: var(--light-text-color); color: var(--secondary-color); }
-        .hero { background: linear-gradient(rgba(2, 3, 129, 0.6), rgba(40, 116, 252, 0.5)), url(image/providing_digital_experiences_through_the_implementation_of_a_manufacturing_ecosystem_with_dark_blu_gytwdu23dr032tfjywmr_1.png) no-repeat center center/cover; color: var(--light-text-color); padding: 200px 0 100px; text-align: left; }
-        .hero h1 { font-family: var(--font-family-heading); font-size: 4rem; margin-bottom: 20px; line-height: 1.2; }
-        .hero p { font-size: 1.1rem; max-width: 500px; margin-bottom: 40px; }
-        .principles { padding: 80px 0; background-color: var(--secondary-color); color: var(--light-text-color); }
-        .principles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center; }
-        .principle-item img { width: 60px; height: 60px; margin-bottom: 20px; }
-        .principle-item h3 { font-family: var(--font-family-heading); font-size: 1.8rem; margin-bottom: 10px; }
-        .principle-item ul { list-style: none; color: #bdc3c7; }
-        .about-us { padding: 100px 0; text-align: center; }
-        .section-title { font-family: var(--font-family-heading); font-size: 3rem; margin-bottom: 15px; color: var(--secondary-color); }
-        .section-subtitle { font-size: 1.2rem; margin-bottom: 60px; color: #7f8c8d; }
-        .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .about-card { background-color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .about-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .about-card img { width: 100%; height: 350px; object-fit: cover; }
-        .about-card-content { padding: 30px; text-align: left; }
-        .about-card h3 { font-family: var(--font-family-heading); font-size: 1.5rem; color: var(--secondary-color); margin-bottom: 10px; }
-        .quote-section { padding: 80px 0; background-color: var(--bg-light-color); }
-        .quote-section blockquote { font-size: 1.4rem; font-weight: 500; text-align: center; max-width: 800px; margin: 0 auto; border: none; color: var(--secondary-color); }
-        .quote-section footer { display: block; text-align: center; margin-top: 20px; font-style: italic; color: var(--text-color); }
-        .contact-section { padding: 100px 0; background-color: var(--bg-dark-color); color: var(--light-text-color); }
-        .contact-section .container { max-width: 700px; }
-        .contact-form label { display: block; margin-bottom: 8px; font-weight: 500; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; border: 1px solid #444; border-radius: 5px; background-color: #1a2a3a; color: var(--light-text-color); font-size: 1rem; margin-bottom: 20px; }
-        .contact-form button { display: block; width: 100%; padding: 15px; border: none; border-radius: 5px; background-color: var(--primary-color); color: var(--light-text-color); font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: background-color 0.3s ease; }
-        .contact-form button:hover:not(:disabled) { background-color: var(--primary-dark-color); }
-        .contact-form button:disabled { background-color: #555; cursor: not-allowed; }
-        #form-status { margin-top: 20px; text-align: center; font-weight: 500; height: 20px; }
-        .main-footer { padding: 40px 0; background-color: #1c1c1c; color: #aaa; text-align: center; }
-        .main-footer p { margin: 5px 0; }
-        .main-footer strong { color: #fff; }
+        
+        /* ▼▼▼ [추가] iframe을 감싸는 컨테이너 스타일 ▼▼▼ */
+        .iframe-wrapper {
+            flex-grow: 1; /* 헤더를 제외한 나머지 모든 공간을 차지 */
+            overflow: hidden;
+        }
+
+        .iframe-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        /* ▲▲▲ [추가] iframe을 감싸는 컨테이너 스타일 ▲▲▲ */
+
+
+        /* Mobile Menu Styles */
         .mobile-menu-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 101; }
         .mobile-nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(15, 23, 42, 0.98); flex-direction: column; justify-content: center; align-items: center; z-index: 100; }
         .main-header.nav-active .mobile-nav { display: flex; }
@@ -205,8 +123,13 @@
         .mobile-nav .mobile-submenu a { font-size: 1.5rem; color: #ccd6f6; }
         .mobile-menu-toggle.active svg:first-child { display: none; }
         .mobile-menu-toggle:not(.active) svg:last-child { display: none; }
-        @media (max-width: 992px) { .principles-grid { grid-template-columns: repeat(2, 1fr); } .about-grid { grid-template-columns: 1fr; } .about-card { max-width: 450px; margin: 0 auto; } }
-        @media (max-width: 768px) { .nav-wrapper { gap: 15px; } .main-nav { display: none; } .mobile-menu-toggle { display: block; } #lang-toggle-btn { font-size: 14px; padding: 6px 12px; } .hero h1 { font-size: 3rem; } .principles-grid { grid-template-columns: 1fr; } }
+
+        @media (max-width: 768px) { 
+            .nav-wrapper { gap: 15px; } 
+            .main-nav { display: none; } 
+            .mobile-menu-toggle { display: block; } 
+            #lang-toggle-btn { font-size: 14px; padding: 6px 12px; } 
+        }
     </style>
 </head>
 <body>
@@ -217,17 +140,17 @@
             <div class="nav-wrapper">
                 <nav class="main-nav">
                     <ul>
-                        <li class="menu-item"><a href="#home" data-key="navHome">Home</a></li>
-                        <li class="menu-item"><a href="#about" data-key="navAbout">About</a></li>
+                        <li class="menu-item"><a href="index.html#home" data-key="navHome">Home</a></li>
+                        <li class="menu-item"><a href="index.html#about" data-key="navAbout">About</a></li>
                         <li class="menu-item">
-                            <a href="#services" data-key="navService">Service</a>
+                            <a href="index.html#services" data-key="navService">Service</a>
                             <ul class="sub-menu">
                                 <li><a href="collaboration.html" data-key="navCollab">협업</a></li>
                                 <li><a href="project.html" data-key="navProject">프로젝트</a></li>
                                 <li><a href="diagnosis.html" data-key="navDiagnosis">기업수준진단</a></li>
                             </ul>
                         </li>
-                        <li class="menu-item"><a href="#contact" data-key="navContact">Contact</a></li>
+                        <li class="menu-item"><a href="index.html#contact" data-key="navContact">Contact</a></li>
                     </ul>
                 </nav>
                 <button id="lang-toggle-btn">KO</button>
@@ -243,8 +166,8 @@
         </div>
          <nav class="mobile-nav" id="mobileNav">
             <ul>
-                <li><a href="#home" data-key="navHomeMobile" class="mobile-nav-link">Home</a></li>
-                <li><a href="#about" data-key="navAboutMobile" class="mobile-nav-link">About</a></li>
+                <li><a href="index.html#home" data-key="navHomeMobile" class="mobile-nav-link">Home</a></li>
+                <li><a href="index.html#about" data-key="navAboutMobile" class="mobile-nav-link">About</a></li>
                 <li class="has-submenu-mobile">
                     <span class="mobile-submenu-title" data-key="navServiceMobile">Service</span>
                     <ul class="mobile-submenu">
@@ -253,9 +176,72 @@
                         <li><a href="diagnosis.html" data-key="navDiagnosisMobile" class="mobile-nav-link">기업수준진단</a></li>
                     </ul>
                 </li>
-                <li><a href="#contact" data-key="navContactMobile" class="mobile-nav-link">Contact</a></li>
+                <li><a href="index.html#contact" data-key="navContactMobile" class="mobile-nav-link">Contact</a></li>
             </ul>
         </nav>
     </header>
-    <iframe src="https://honeysuckle-pick-ea6.notion.site/ebd/228ffb52855f808ea938ef4f1c0db578" width="100%" height="2000" frameborder="0" />
+
+    <div class="iframe-wrapper">
+        <iframe src="https://honeysuckle-pick-ea6.notion.site/ebd/228ffb52855f808ea938ef4f1c0db578" title="Collaboration Page Content"></iframe>
+    </div>
+    <script>
+        // 이 페이지는 다른 페이지이므로, 언어 전환 등 공통 JavaScript는 별도 파일로 관리하는 것이 좋지만,
+        // 요청에 따라 단일 파일로 유지하기 위해 필요한 스크립트를 포함합니다.
+        document.addEventListener('DOMContentLoaded', () => {
+            const translations = {
+                ko: {
+                    navHome: "홈", navAbout: "소개", navService: "서비스", navContact: "연락처",
+                    navCollab: "협업", navProject: "프로젝트", navDiagnosis: "기업수준진단",
+                    navHomeMobile: "홈", navAboutMobile: "소개", navServiceMobile: "서비스", navContactMobile: "연락처",
+                    navCollabMobile: "협업", navProjectMobile: "프로젝트", navDiagnosisMobile: "기업수준진단",
+                },
+                en: {
+                    navHome: "Home", navAbout: "About", navService: "Service", navContact: "Contact",
+                    navCollab: "Collaboration", navProject: "Project", navDiagnosis: "Diagnosis",
+                    navHomeMobile: "Home", navAboutMobile: "About", navServiceMobile: "Service", navContactMobile: "Contact",
+                    navCollabMobile: "Collaboration", navProjectMobile: "Project", navDiagnosisMobile: "Diagnosis",
+                }
+            };
+
+            const langToggleButton = document.getElementById('lang-toggle-btn');
+            const translatableElements = document.querySelectorAll('[data-key]');
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mainHeader = document.getElementById('mainHeader');
+            const mobileNav = document.getElementById('mobileNav');
+            let currentLang = localStorage.getItem('lang') || 'en';
+
+            const switchLanguage = (lang) => {
+                translatableElements.forEach(element => {
+                    const key = element.getAttribute('data-key');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.innerHTML = translations[lang][key];
+                    }
+                });
+                currentLang = lang;
+                langToggleButton.textContent = lang === 'ko' ? 'EN' : 'KO';
+                localStorage.setItem('lang', lang); 
+                document.documentElement.lang = lang === 'ko' ? 'ko-KR' : 'en-US';
+            };
+            
+            langToggleButton.addEventListener('click', () => {
+                const newLang = currentLang === 'ko' ? 'en' : 'ko';
+                switchLanguage(newLang);
+            });
+            
+            mobileMenuToggle.addEventListener('click', () => {
+                mainHeader.classList.toggle('nav-active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+
+            mobileNav.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainHeader.classList.remove('nav-active');
+                    mobileMenuToggle.classList.remove('active');
+                });
+            });
+            
+            switchLanguage(currentLang);
+        });
+    </script>
 </body>
+</html>
